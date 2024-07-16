@@ -66,11 +66,7 @@ const Destinations = () => {
       </article>
 
     </section>
-    
-    
     </>
-    
-    
   )
 }
 
