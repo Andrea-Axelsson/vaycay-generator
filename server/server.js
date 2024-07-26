@@ -1,4 +1,5 @@
 import express from 'express'
+import cors from 'cors'
 import errorHandlerMiddleware from './middlewares/errorHandler.js'
 import loggerMiddleware from './middlewares/logger.js'
 import destinationRouter from './routes/destinationRouter.js'
@@ -11,6 +12,18 @@ const app = express()
 //Middlewares
 app.use(express.json())
 app.use(loggerMiddleware)
+
+
+// CORS-inställningar
+const corsOptions = {
+    origin: 'http://localhost:5173',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Lägg till alla metoder som din frontend-applikation kan använda
+    allowedHeaders: ['Content-Type', 'Authorization'], // Lägg till alla headers som din frontend-applikation skickar
+    credentials: true, // Tillåt att cookies skickas över CORS
+    optionsSuccessStatus: 200 // Tillåt att response status 200 skickas för OPTIONS-request
+};
+
+app.use(cors(corsOptions));
 
 //Routes
 
